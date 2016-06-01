@@ -1,15 +1,24 @@
 package entry;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.KeyValue;
+import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Scan;
+import org.apache.hadoop.hbase.io.ImmutableBytesWritable;
 import org.apache.hadoop.hbase.mapreduce.TableInputFormat;
+import org.apache.hadoop.hbase.util.Base64;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+import scala.Tuple2;
 import util.HbasePoolUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Administrator on 2016/5/30.
@@ -18,38 +27,31 @@ public class SparkWorkFlow {
     private static Configuration conf = null;
 
     public static void check() {
-        //SparkConf设置
+        //SparkConf配置
         SparkConf sparkConf = new SparkConf();
         sparkConf.setMaster("local");
         sparkConf.setAppName("Spark HBase");
         JavaSparkContext context = new JavaSparkContext(sparkConf);
 
-
-
-
-//        JavaSparkContext jsc = new JavaSparkContext();
-
-//        JavaRDD<String> text =
-
         //Scan操作
         Scan scan = new Scan();
         scan.setStartRow(Bytes.toBytes("0120140722"));
         scan.setStopRow(Bytes.toBytes("1620140728"));
-        scan.addFamily(Bytes.toBytes("basic"));
-        scan.addColumn(Bytes.toBytes("basic"), Bytes.toBytes("name"));
+        scan.addFamily(Bytes.toBytes("crawler"));
+        scan.addColumn(Bytes.toBytes("crawler"), Bytes.toBytes("text"));
 
         conf = HbasePoolUtils.getConfiguration();
-        conf.set(TableInputFormat.INPUT_TABLE, "gycrawler");
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DataOutputStream dos = new DataOutputStream(out);
-        /*scan.write(dos);
+//        scan.write(dos);
         String scanStr = Base64.encodeBytes(out.toByteArray());
         IOUtils.closeQuietly(dos);
         IOUtils.closeQuietly(out);
-        //高版本可以用如下方式：
+        //高版本可以使用如下方式
         //ClientProtos.Scan proto = ProtobufUtil.toScan(scan);
         //String scanStr = Base64.encodeBytes(proto.toByteArray());
+        conf.set(TableInputFormat.INPUT_TABLE, "gycrawler");
         conf.set(TableInputFormat.SCAN, scanStr);
 
         JavaPairRDD<ImmutableBytesWritable, Result> hBaseRDD = context
@@ -70,7 +72,7 @@ public class SparkWorkFlow {
                         + new String(kv.getQualifier()) + " value:"
                         + new String(kv.getValue()));
             }
-        }*/
+        }
     }
 
     public static void main(String[] args) {
