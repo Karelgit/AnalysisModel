@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/content/ContentValue.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/judge/HtmlSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/judge/JudgeDensity.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/judge/JudgeURL.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/link/LinkValue.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/util/DocumentParser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/analysis/util/TokenParser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/download/GetHtml.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/empty/EmptyCheck.java" charset="UTF-8" />
+  </component>
+</project>
