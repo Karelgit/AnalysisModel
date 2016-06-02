@@ -10,6 +10,7 @@ import org.apache.hadoop.hbase.protobuf.ProtobufUtil;
 import org.apache.hadoop.hbase.protobuf.generated.ClientProtos;
 import org.apache.hadoop.hbase.util.Base64;
 import org.apache.hadoop.hbase.util.Bytes;
+import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
@@ -26,8 +27,10 @@ public class SparkWorkFlow {
 
     public static void check() {
         //SparkConf≈‰÷√
-        JavaSparkContext sc = new JavaSparkContext("local", "hbaseTest",
-                System.getenv("SPARK_HOME"), System.getenv("JARS"));
+        SparkConf sparkConf = new SparkConf();
+        sparkConf.setMaster("local");
+        sparkConf.setAppName("Spark Hbase");
+        JavaSparkContext sc = new JavaSparkContext(sparkConf);
 
         //Scan≤Ÿ◊˜
         Scan scan = new Scan();
