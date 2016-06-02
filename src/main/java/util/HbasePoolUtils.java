@@ -28,7 +28,6 @@ public class
         port = (String) new HbasePoolUtils().loadPropety().get("hbase_port");
         conf.set("hbase.zookeeper.quorum", hostnames);
         conf.set("hbase.zookeeper.property.clientPort", port);
-//        myPool = new HTablePool(conf, 100);
     }
 
     public static synchronized Configuration getConfiguration() {
@@ -93,10 +92,11 @@ public class
         return properties;
     }
 
-    //测试
+    //测试连接
     public static void main(String[] args) {
         HbasePoolUtils hpu = new HbasePoolUtils();
         System.out.println(hpu.loadPropety().get("hbase_ip"));
+        System.out.println(hpu.loadPropety().get("hbase_port"));
     }
 
 

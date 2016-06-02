@@ -31,9 +31,7 @@ public class SparkWorkFlow {
 
         //Scan²Ù×÷
         Scan scan = new Scan();
-        scan.setStartRow(Bytes.toBytes("0120140722"));
-        scan.setStopRow(Bytes.toBytes("1620140728"));
-        scan.addFamily(Bytes.toBytes("crawler"));
+        scan.addFamily(Bytes.toBytes("crawlerData"));
         scan.addColumn(Bytes.toBytes("crawlerData"), Bytes.toBytes("text"));
 
         conf = HbasePoolUtils.getConfiguration();
