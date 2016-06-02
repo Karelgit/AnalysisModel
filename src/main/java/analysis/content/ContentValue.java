@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
  */
 public class ContentValue
 {
-    private List<String> contentList;//å†…å®¹å—åˆ—è¡¨
+    private List<String> contentList;//ÄÚÈİ¿éÁĞ±í
 
-    static final String DATE_MATCHER = "(\\d{4}(\\-|å¹´|\\\\|/|\\.)\\d{1,2}(\\-|æœˆ|\\\\|/|\\.)\\d{1,2}(æ—¥)?)";
+    static final String DATE_MATCHER = "(\\d{4}(\\-|Äê|\\\\|/|\\.)\\d{1,2}(\\-|ÔÂ|\\\\|/|\\.)\\d{1,2}(ÈÕ)?)";
 
 
     private int contentIndex = -1;
@@ -26,7 +26,7 @@ public class ContentValue
 
 
     /**
-     * æå–Title
+     * ÌáÈ¡Title
      * @return
      */
     public String getTitle()
@@ -44,7 +44,7 @@ public class ContentValue
                 if (str.charAt(j) >= '0' && str.charAt(j) <= '9') key--;
             }
 
-            if (str.contains("<<") || str.contains("ã€Š")) key += 5;
+            if (str.contains("<<") || str.contains("¡¶")) key += 5;
             if (key > max)
             {
                 max = key;
@@ -56,7 +56,7 @@ public class ContentValue
 
 
     /**
-     * æå–ç½‘é¡µå†…å®¹
+     * ÌáÈ¡ÍøÒ³ÄÚÈİ
      * @return
      */
     public String getContent()
@@ -80,7 +80,7 @@ public class ContentValue
     }
 
     /**
-     * æ ¹æ®æ ‡ç‚¹è®¡ç®—å—ä¸ºå†…å®¹å—çš„åˆ†å€¼
+     * ¸ù¾İ±êµã¼ÆËã¿éÎªÄÚÈİ¿éµÄ·ÖÖµ
      * @param content
      * @return
      */
@@ -88,16 +88,16 @@ public class ContentValue
     {
         int level = 0;
         level += content.split(",").length-1;
-        level += content.split("ï¼Œ").length-1;
-        level += content.split("ã€‚").length-1;
-        level += content.split("ï¼").length-1;
+        level += content.split("£¬").length-1;
+        level += content.split("¡£").length-1;
+        level += content.split("£¡").length-1;
         level += content.split("!").length-1;
         return level;
     }
 
 
     /**
-     * ä»Stringä¸­æå–å‡ºæ»¡è¶³æ—¶é—´æ ¼å¼çš„  æ—¶é—´å­—ç¬¦ä¸²
+     * ´ÓStringÖĞÌáÈ¡³öÂú×ãÊ±¼ä¸ñÊ½µÄ  Ê±¼ä×Ö·û´®
      * @param token
      * @return
      */
@@ -113,7 +113,7 @@ public class ContentValue
 
 
     /**
-     * æå–æ–‡ç« é¡µå‘å¸ƒæ—¶é—´
+     * ÌáÈ¡ÎÄÕÂÒ³·¢²¼Ê±¼ä
      * @return
      */
     public long getDate()
@@ -121,18 +121,18 @@ public class ContentValue
         String date;
         String str;
 
-        //æ ¹æ®å…³é”®å­—æå–æ—¥æœŸ
+        //¸ù¾İ¹Ø¼ü×ÖÌáÈ¡ÈÕÆÚ
         for (int i = 0; i < contentList.size(); i++)
         {
             str = contentList.get(i);
-            if (str.contains("å‘å¸ƒæ—¶é—´") || str.contains("å‘å¸ƒæ—¥æœŸ") || str.contains("æ—¥æœŸ") || str.contains("æ—¶é—´"))
+            if (str.contains("·¢²¼Ê±¼ä") || str.contains("·¢²¼ÈÕÆÚ") || str.contains("ÈÕÆÚ") || str.contains("Ê±¼ä"))
             {
                 date = getDateString(str);
                 if (date != null) return getDateFormString(date);
             }
         }
 
-        //ä»æ­£æ–‡å¾€å‰æå–æ—¥æœŸ
+        //´ÓÕıÎÄÍùÇ°ÌáÈ¡ÈÕÆÚ
         for (int i = contentIndex-1; i>contentIndex-6; i--)
         {
             if (i<0) break;
@@ -141,7 +141,7 @@ public class ContentValue
             if (date != null) return getDateFormString(date);
         }
 
-        //ä»æ­£æ–‡æå–æ—¥æœŸ
+        //´ÓÕıÎÄÌáÈ¡ÈÕÆÚ
         if (contentIndex>-1)
         {
             str = contentList.get(contentIndex);
@@ -155,7 +155,7 @@ public class ContentValue
 
 
     /**
-     * æå–å­—ç¬¦ä¸²ä¸­çš„æ—¶é—´å¹¶å°†å…¶è½¬åŒ–ä¸ºæ—¶é—´æˆ³
+     * ÌáÈ¡×Ö·û´®ÖĞµÄÊ±¼ä²¢½«Æä×ª»¯ÎªÊ±¼ä´Á
      *
      * @param str
      * @return
@@ -163,9 +163,9 @@ public class ContentValue
     public static long getDateFormString(String str)
     {
 
-        //æ ¼å¼æ ‡å‡†åŒ–
-        str = str.replaceAll("\\\\|/|å¹´|æœˆ|\\.", "-");
-        str = str.replaceAll("æ—¥", "");
+        //¸ñÊ½±ê×¼»¯
+        str = str.replaceAll("\\\\|/|Äê|ÔÂ|\\.", "-");
+        str = str.replaceAll("ÈÕ", "");
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

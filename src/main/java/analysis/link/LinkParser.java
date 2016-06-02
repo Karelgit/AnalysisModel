@@ -50,14 +50,14 @@ public class LinkParser
             parser();
         } catch (IOException e)
         {
-            System.out.println("ç½‘é¡µæ ¼å¼ä¸è§„èŒƒï¼Œtokenåˆ—è¡¨æ„é€ å¤±è´¥");
+            System.out.println("ÍøÒ³¸ñÊ½²»¹æ·¶£¬tokenÁĞ±í¹¹ÔìÊ§°Ü");
             e.printStackTrace();
         }
     }
 
 
     /**
-     * è·å–è¯¥èŠ‚ç‚¹ä¸‹æ‰€æœ‰çš„å†…å®¹å—
+     * »ñÈ¡¸Ã½ÚµãÏÂËùÓĞµÄÄÚÈİ¿é
      *
      * @param index
      */
@@ -72,15 +72,15 @@ public class LinkParser
             Url url = new Url();
             String value = node.getValue();
 
-            //è·å–Url
+            //»ñÈ¡Url
             url.setUrl(getLabelUrl(value));
 
-            //è·å–title
+            //»ñÈ¡title
             String title = getLabelTitle(value);
             if (title == null) title = getTitle(index);
             url.setTitle(title);
 
-            //è·å–date
+            //»ñÈ¡date
             long date = getDate(index);
             url.setDate(date);
 
@@ -101,7 +101,7 @@ public class LinkParser
 
 
     /**
-     * æå–<a></a>æ ‡ç­¾åçš„titleå†…å®¹
+     * ÌáÈ¡<a></a>±êÇ©ºóµÄtitleÄÚÈİ
      * @param index
      * @return
      */
@@ -114,7 +114,7 @@ public class LinkParser
 
 
     /**
-     * æå–<a></a>æ ‡ç­¾å‘¨å›´çš„æ—¶é—´
+     * ÌáÈ¡<a></a>±êÇ©ÖÜÎ§µÄÊ±¼ä
      * @param index
      * @return
      */
@@ -128,7 +128,7 @@ public class LinkParser
 
 
     /**
-     * æå–indexèŠ‚ç‚¹ä¸‹åŒ…å«çš„æ—¶é—´
+     * ÌáÈ¡index½ÚµãÏÂ°üº¬µÄÊ±¼ä
      * @param index
      * @return
      */
@@ -166,7 +166,7 @@ public class LinkParser
     }
 
     /**
-     * å¯»æ‰¾indexçš„çˆ¶èŠ‚ç‚¹ä¸­ï¼Œç¬¬ä¸€ä¸ª å­èŠ‚ç‚¹æ•°å¤§äº1çš„èŠ‚ç‚¹ã€‚ç›¸å½“äºå¯»æ‰¾è¯¥èŠ‚ç‚¹æ‰€åœ¨æœ€å°çš„å—çš„å—èŠ‚ç‚¹
+     * Ñ°ÕÒindexµÄ¸¸½ÚµãÖĞ£¬µÚÒ»¸ö ×Ó½ÚµãÊı´óÓÚ1µÄ½Úµã¡£Ïàµ±ÓÚÑ°ÕÒ¸Ã½ÚµãËùÔÚ×îĞ¡µÄ¿éµÄ¿é½Úµã
      * @param index
      * @return
      */
@@ -182,7 +182,7 @@ public class LinkParser
 
 
     /**
-     * è·å–æ‰€æœ‰å†…å®¹å—å†…å®¹ï¼Œå¹¶æ›´æ–°åˆ°contentList
+     * »ñÈ¡ËùÓĞÄÚÈİ¿éÄÚÈİ£¬²¢¸üĞÂµ½contentList
      *
      * @param index
      */
@@ -207,15 +207,15 @@ public class LinkParser
 
 
     /**
-     * é€šè¿‡è·ŸèŠ‚ç‚¹åšä¸ºèµ·å§‹ç‚¹ éå†è®¡ç®—å‡ºå†…å®¹å—
-     * ä¸ºå†…å®¹å—æ¡ä»¶ï¼š
-     * 1.å½“å‰èŠ‚ç‚¹ä¸ºå¶å­èŠ‚ç‚¹ä¸”å½“å‰èŠ‚ç‚¹ä¸ºå†…å®¹èŠ‚ç‚¹(isText)
-     * 2.å½“å‰èŠ‚ç‚¹ä¸ºæèŠ‚ç‚¹ä¸”å½“å‰èŠ‚ç‚¹çš„æ‰€æœ‰å­èŠ‚ç‚¹éƒ½ä¸ºå†…å®¹å—(isContent)
+     * Í¨¹ı¸ú½Úµã×öÎªÆğÊ¼µã ±éÀú¼ÆËã³öÄÚÈİ¿é
+     * ÎªÄÚÈİ¿éÌõ¼ş£º
+     * 1.µ±Ç°½ÚµãÎªÒ¶×Ó½ÚµãÇÒµ±Ç°½ÚµãÎªÄÚÈİ½Úµã(isText)
+     * 2.µ±Ç°½ÚµãÎªÖ¦½ÚµãÇÒµ±Ç°½ÚµãµÄËùÓĞ×Ó½Úµã¶¼ÎªÄÚÈİ¿é(isContent)
      *
-     * @param index èŠ‚ç‚¹æ‰€åœ¨document.treeä¸­çš„ä½ç½®
+     * @param index ½ÚµãËùÔÚdocument.treeÖĞµÄÎ»ÖÃ
      */
 
-    private Map<Integer, Integer> map;//ç”¨äºå‰ªæï¼Œæ ‡è®°è¯¥èŠ‚ç‚¹æ˜¯å¦å·²è¿‘è¢«è®¡ç®—è¿‡
+    private Map<Integer, Integer> map;//ÓÃÓÚ¼ôÖ¦£¬±ê¼Ç¸Ã½ÚµãÊÇ·ñÒÑ½ü±»¼ÆËã¹ı
 
     private void countContent(int index)
     {
@@ -243,12 +243,12 @@ public class LinkParser
             else node.setIsContent(false);
         }
 
-        map.put(index, 1);//æŸ“è‰²è¯¥èŠ‚ç‚¹ï¼Œå‰ªæ
+        map.put(index, 1);//È¾É«¸Ã½Úµã£¬¼ôÖ¦
     }
 
 
     /**
-     * æ‹¼æ¥url
+     * Æ´½Óurl
      *
      * @param mainUrl
      * @param newUrk
@@ -271,7 +271,7 @@ public class LinkParser
 
 
     /**
-     * ä»æ ‡ç­¾ä¸­æå–url
+     * ´Ó±êÇ©ÖĞÌáÈ¡url
      *
      * @param label
      * @return
@@ -280,13 +280,13 @@ public class LinkParser
     {
         String MACHER = ".*href=('|\")(\\S*)('|\").*";
         String url = null;
-        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|Â·|\\|", "");
-        //åŒ¹é…url
+        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|¡¤|\\|", "");
+        //Æ¥Åäurl
         Pattern compile = Pattern.compile(MACHER, Pattern.CASE_INSENSITIVE);
         Matcher matcher = compile.matcher(label);
         if (matcher.find())
         {
-            //æ‹¼æ¥url
+            //Æ´½Óurl
             url = joinUrl(domain, matcher.group(2));
         }
         return url;
@@ -294,16 +294,16 @@ public class LinkParser
 
 
     /**
-     * ä»æ ‡ç­¾ä¸­æå–title
+     * ´Ó±êÇ©ÖĞÌáÈ¡title
      *
-     * @param label æ ‡ç­¾å†…å®¹
-     * @return titleå†…å®¹
+     * @param label ±êÇ©ÄÚÈİ
+     * @return titleÄÚÈİ
      */
     public static String getLabelTitle(String label)
     {
         String MACHER = ".*title=('|\")([^'^\"]*)('|\").*";
         String title = null;
-        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|Â·|\\|", "");
+        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|¡¤|\\|", "");
         Pattern compile = Pattern.compile(MACHER, Pattern.CASE_INSENSITIVE);
         Matcher matcher = compile.matcher(label);
         if (matcher.find())
@@ -316,19 +316,19 @@ public class LinkParser
 
 
     /**
-     * æå–å­—ç¬¦ä¸²ä¸­çš„æ—¶é—´å¹¶å°†å…¶è½¬åŒ–ä¸ºæ—¶é—´æˆ³
+     * ÌáÈ¡×Ö·û´®ÖĞµÄÊ±¼ä²¢½«Æä×ª»¯ÎªÊ±¼ä´Á
      *
      * @param str
      * @return
      */
-    static final String DATE_MATCHER = "(\\d{4}(\\-|å¹´|\\\\|/|\\.)\\d{1,2}(\\-|æœˆ|\\\\|/|\\.)\\d{1,2}(æ—¥)?)";
+    static final String DATE_MATCHER = "(\\d{4}(\\-|Äê|\\\\|/|\\.)\\d{1,2}(\\-|ÔÂ|\\\\|/|\\.)\\d{1,2}(ÈÕ)?)";
 
     public static long getDateFormString(String str)
     {
         System.out.println(str);
-        //æ ¼å¼æ ‡å‡†åŒ–
-        str = str.replaceAll("\\\\|/|å¹´|æœˆ|\\.", "-");
-        str = str.replaceAll("æ—¥", "");
+        //¸ñÊ½±ê×¼»¯
+        str = str.replaceAll("\\\\|/|Äê|ÔÂ|\\.", "-");
+        str = str.replaceAll("ÈÕ", "");
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;

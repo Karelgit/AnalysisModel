@@ -66,7 +66,7 @@ public class EmptyCheck
 
 
     /**
-     * é€šè¿‡å†…å®¹æ˜¯å¦ä¸ºç©ºï¼Œåˆ¤æ–­è¯¥é¡µæ˜¯å¦ä¸ºç–‘ä¼¼ç©ºç™½æ ç›®
+     * Í¨¹ıÄÚÈİÊÇ·ñÎª¿Õ£¬ÅĞ¶Ï¸ÃÒ³ÊÇ·ñÎªÒÉËÆ¿Õ°×À¸Ä¿
      * @return
      */
     private Boolean contentIsEmpty()
@@ -74,20 +74,20 @@ public class EmptyCheck
         int sort= HtmlSort.getHtmlSort(domain,html);
         if (sort==1)
         {
-            //å¯¼èˆª
+            //µ¼º½
             LinkParser linkParser =new LinkParser(document,domain);
             LinkValue linkValue=new LinkValue(linkParser.getContentList());
             List<Url> urls=linkValue.getContent();
-            //å¦‚æœè·å–çš„urlæ•°å°äºä»¥ä¸‹é˜€å€¼åˆ™è¡¨ç¤ºï¼Œè¯¥å¯¼èˆªé¡µä¸ºç–‘ä¼¼ç©ºç™½æ ç›®
+            //Èç¹û»ñÈ¡µÄurlÊıĞ¡ÓÚÒÔÏÂ·§ÖµÔò±íÊ¾£¬¸Ãµ¼º½Ò³ÎªÒÉËÆ¿Õ°×À¸Ä¿
             if (urls.size()<6) return true;
         }
         else
         {
-            //æ–‡ç« é¡µ
+            //ÎÄÕÂÒ³
             ContentParser contentParser =new ContentParser(document);
             ContentValue contentValue =new ContentValue(contentParser.getContentList());
             String content=contentValue.getContent();
-            //å¦‚æœè·å–çš„contentå­—æ•°å°äºä»¥ä¸‹é˜€å€¼åˆ™è¡¨ç¤ºï¼Œè¯¥æ–‡ç« é¡µä¸ºç–‘ä¼¼ç©ºç™½æ ç›®
+            //Èç¹û»ñÈ¡µÄcontent×ÖÊıĞ¡ÓÚÒÔÏÂ·§ÖµÔò±íÊ¾£¬¸ÃÎÄÕÂÒ³ÎªÒÉËÆ¿Õ°×À¸Ä¿
             if (content.length()<20) return true;
         }
 
@@ -97,7 +97,7 @@ public class EmptyCheck
 
 
     /**
-     * åˆ¤æ–­å…³é”®å­—æ‰€åœ¨å—ä¸­ï¼Œæ˜¯å¦æœ‰ç›¸åº”çš„å†…å®¹å—urlå­˜åœ¨ï¼Œå¦‚ä¸å­˜åœ¨åˆ™ä¸ºç–‘ä¼¼ç©ºç™½
+     * ÅĞ¶Ï¹Ø¼ü×ÖËùÔÚ¿éÖĞ£¬ÊÇ·ñÓĞÏàÓ¦µÄÄÚÈİ¿éurl´æÔÚ£¬Èç²»´æÔÚÔòÎªÒÉËÆ¿Õ°×
      * @return
      */
     private Boolean recommendIsEmpty()
@@ -110,9 +110,9 @@ public class EmptyCheck
             if (soft.equals("CONTENT"))
             {
                 String value = node.getValue();
-                //æ·»åŠ å…³é”®å­—åŒ¹é…ã€‚åˆ¤æ–­è¯¥å…³é”®å­—ä¸‹æ˜¯å¦åº”è¯¥æœ‰urlå—
-                if (value.contains("ç›¸å…³æ¨è") || value.contains("çƒ­ç‚¹æ–‡ç« ") || value.contains("æ¨èæ–‡ç« ") ||
-                        value.contains("ç›¸å…³æ–‡ç« ") || value.contains("æ–°é—»å¯¼è¯»") || value.contains("ç›¸å…³æ–°é—»")||value.contains("æœ€æ–°æ¨è"))
+                //Ìí¼Ó¹Ø¼ü×ÖÆ¥Åä¡£ÅĞ¶Ï¸Ã¹Ø¼ü×ÖÏÂÊÇ·ñÓ¦¸ÃÓĞurl¿é
+                if (value.contains("Ïà¹ØÍÆ¼ö") || value.contains("ÈÈµãÎÄÕÂ") || value.contains("ÍÆ¼öÎÄÕÂ") ||
+                        value.contains("Ïà¹ØÎÄÕÂ") || value.contains("ĞÂÎÅµ¼¶Á") || value.contains("Ïà¹ØĞÂÎÅ")||value.contains("×îĞÂÍÆ¼ö"))
                 {
                     urls.clear();
                     int parent = getSingleChildParent(node.getParent());
@@ -139,7 +139,7 @@ public class EmptyCheck
 
 
     /**
-     * è·å–è¯¥èŠ‚ç‚¹ä¸‹æ‰€æœ‰çš„å†…å®¹å—
+     * »ñÈ¡¸Ã½ÚµãÏÂËùÓĞµÄÄÚÈİ¿é
      *
      * @param index
      */
@@ -154,10 +154,10 @@ public class EmptyCheck
             Url url = new Url();
             String value = node.getValue();
 
-            //è·å–Url
+            //»ñÈ¡Url
             url.setUrl(getLabelUrl(value));
 
-            //è·å–title
+            //»ñÈ¡title
             String title = getLabelTitle(value);
             if (title == null) title = getTitle(index);
             url.setTitle(title);
@@ -185,7 +185,7 @@ public class EmptyCheck
     }
 
     /**
-     * æ‹¼æ¥url
+     * Æ´½Óurl
      *
      * @param mainUrl
      * @param newUrk
@@ -208,7 +208,7 @@ public class EmptyCheck
 
 
     /**
-     * ä»æ ‡ç­¾ä¸­æå–url
+     * ´Ó±êÇ©ÖĞÌáÈ¡url
      *
      * @param label
      * @return
@@ -217,13 +217,13 @@ public class EmptyCheck
     {
         String MACHER = ".*href=('|\")(\\S*)('|\").*";
         String url = null;
-        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|Â·|\\|", "");
-        //åŒ¹é…url
+        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|¡¤|\\|", "");
+        //Æ¥Åäurl
         Pattern compile = Pattern.compile(MACHER, Pattern.CASE_INSENSITIVE);
         Matcher matcher = compile.matcher(label);
         if (matcher.find())
         {
-            //æ‹¼æ¥url
+            //Æ´½Óurl
             url = joinUrl(domain, matcher.group(2));
         }
         return url;
@@ -231,16 +231,16 @@ public class EmptyCheck
 
 
     /**
-     * ä»æ ‡ç­¾ä¸­æå–title
+     * ´Ó±êÇ©ÖĞÌáÈ¡title
      *
-     * @param label æ ‡ç­¾å†…å®¹
-     * @return titleå†…å®¹
+     * @param label ±êÇ©ÄÚÈİ
+     * @return titleÄÚÈİ
      */
     public static String getLabelTitle(String label)
     {
         String MACHER = ".*title=('|\")([^'^\"]*)('|\").*";
         String title = null;
-        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|Â·|\\|", "");
+        label = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|¡¤|\\|", "");
         Pattern compile = Pattern.compile(MACHER, Pattern.CASE_INSENSITIVE);
         Matcher matcher = compile.matcher(label);
         if (matcher.find())

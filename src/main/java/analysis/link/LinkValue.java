@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
  */
 public class LinkValue
 {
-    private List<List<Url>> contentList;//å†…å®¹å—åˆ—è¡¨
+    private List<List<Url>> contentList;//ÄÚÈİ¿éÁĞ±í
 
 
     final static double textDensity = 6;
@@ -23,7 +23,7 @@ public class LinkValue
     }
 
     /**
-     * è·å–å¯¼èˆªé¡µä¸­æ‰€æœ‰å†…å®¹é“¾æ¥
+     * »ñÈ¡µ¼º½Ò³ÖĞËùÓĞÄÚÈİÁ´½Ó
      * @return
      */
     public List<Url> getContent()
@@ -51,7 +51,7 @@ public class LinkValue
                 }
             } else
             {
-                //æŸ¥è¯¢æ˜¯å¦åŒ…å«ä¸‹ä¸€é¡µ
+                //²éÑ¯ÊÇ·ñ°üº¬ÏÂÒ»Ò³
                 for (int j = 0; j < urls.size(); j++)
                 {
                     Url url = urls.get(j);
@@ -67,7 +67,7 @@ public class LinkValue
 
 
     /**
-     * åˆ¤æ–­listä¸­çš„urlæ˜¯å¦ä¸ºéœ€æ±‚å†…å®¹
+     * ÅĞ¶ÏlistÖĞµÄurlÊÇ·ñÎªĞèÇóÄÚÈİ
      *
      * @param
      * @return
@@ -75,7 +75,7 @@ public class LinkValue
     public static boolean isContent(List<Url> urls)
     {
 
-        //åˆå§‹åŒ–
+        //³õÊ¼»¯
         int article = 0;
         int navigate = 0;
 
@@ -83,12 +83,12 @@ public class LinkValue
         int textNum = 0;
         Url url;
 
-        //ç»Ÿè®¡æ–‡ç« é“¾æ¥ä¸ªæ•°
+        //Í³¼ÆÎÄÕÂÁ´½Ó¸öÊı
         for (int i = 0; i < sum; i++)
         {
             url = urls.get(i);
 
-            //ç»Ÿè®¡æ–‡ç« å’Œå¯¼èˆªæ•°
+            //Í³¼ÆÎÄÕÂºÍµ¼º½Êı
             int sort = JudgeURL.getSortByURL(url.getUrl());
             if (sort == -1) article++;
             if (sort == 1) navigate++;
@@ -96,16 +96,16 @@ public class LinkValue
             textNum += url.getTitle().length();
         }
 
-        //å¦‚æœå¯¼èˆªé“¾æ¥åœ¨æ€»é“¾æ¥æ•°é‡Œè¶…è¿‡ä»¥ä¸‹é˜€å€¼ï¼Œåˆ™ç›´æ¥åˆ¤ä¸ºä¸æ˜¯å†…å®¹å—
+        //Èç¹ûµ¼º½Á´½ÓÔÚ×ÜÁ´½ÓÊıÀï³¬¹ıÒÔÏÂ·§Öµ£¬ÔòÖ±½ÓÅĞÎª²»ÊÇÄÚÈİ¿é
         if ((navigate + 0.0) / sum > 0.6) return false;
 
-        //å¦‚æœæ–‡ç« é¡µé“¾æ¥çš„å æ¯” æ¯”å¯¼èˆªé¡µé“¾æ¥çš„å æ¯”å¤§ï¼Œåˆ™ç›´æ¥åˆ¤ä¸ºæ˜¯å†…å®¹å—
+        //Èç¹ûÎÄÕÂÒ³Á´½ÓµÄÕ¼±È ±Èµ¼º½Ò³Á´½ÓµÄÕ¼±È´ó£¬ÔòÖ±½ÓÅĞÎªÊÇÄÚÈİ¿é
         if ((article + 0.0) / sum > (navigate + 0.0) / sum) return true;
 
-        //å¦‚æœå—ä¸­é“¾æ¥æ•°å°äºç­‰äºä¸€åˆ™åˆ¤ä¸ºï¼Œä¸æ˜¯å†…å®¹å—
+        //Èç¹û¿éÖĞÁ´½ÓÊıĞ¡ÓÚµÈÓÚÒ»ÔòÅĞÎª£¬²»ÊÇÄÚÈİ¿é
         if (sum > 1)
         {
-            //å½“æ¯æ¡é“¾æ¥çš„å¹³å‡æ ‡é¢˜é•¿åº¦å¤§äºä»¥ä¸‹é˜€å€¼ï¼Œåˆ™åˆ¤ä¸ºå†…å®¹å—
+            //µ±Ã¿ÌõÁ´½ÓµÄÆ½¾ù±êÌâ³¤¶È´óÓÚÒÔÏÂ·§Öµ£¬ÔòÅĞÎªÄÚÈİ¿é
             if (textNum / sum > textDensity) return true;
         }
         return false;
@@ -113,7 +113,7 @@ public class LinkValue
 
 
     /**
-     * åˆ¤æ–­è¯¥é“¾æ¥æ˜¯å¦ä¸ºé™æ€ç½‘é¡µä¸­çš„ â€œä¸‹ä¸€é¡µâ€
+     * ÅĞ¶Ï¸ÃÁ´½ÓÊÇ·ñÎª¾²Ì¬ÍøÒ³ÖĞµÄ ¡°ÏÂÒ»Ò³¡±
      * @param url
      * @param title
      * @return
@@ -124,7 +124,7 @@ public class LinkValue
         final String NEXTPAGR_URL_MATCHER2 = ".*(\\d+|index)_\\d+.\\w+";
         if (Pattern.matches(NEXTPAGR_URL_MATCHER1, url)) return true;
         if (Pattern.matches(NEXTPAGR_URL_MATCHER2, url)) return true;
-        if (title.contains("ä¸‹é¡µ|ä¸‹ä¸€é¡µ")) return true;
+        if (title.contains("ÏÂÒ³|ÏÂÒ»Ò³")) return true;
         return false;
     }
 

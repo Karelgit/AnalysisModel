@@ -21,12 +21,12 @@ public class DocumentParser
     public Document getDocument()
     {
 
-        //åˆå§‹åŒ–æ ¹èŠ‚ç‚¹
+        //³õÊ¼»¯¸ù½Úµã
         DocumentNode root = new DocumentNode(0, 0, 0);
         tree.add(root);
 
         DocumentNode parent = root;
-        //éå†tokensåˆ—è¡¨æ„å»ºæ ‘
+        //±éÀútokensÁĞ±í¹¹½¨Ê÷
         for (int i = 0; i < tokens.size(); i++)
         {
 
@@ -34,7 +34,7 @@ public class DocumentParser
             System.out.println(token);
             String sort = getTokenSort(token);
 
-            //å¼€å§‹æ ‡ç­¾
+            //¿ªÊ¼±êÇ©
             if (sort.equals("START_LABEL"))
             {
                 int key = treeSize + 1;
@@ -47,7 +47,7 @@ public class DocumentParser
                 continue;
             }
 
-            //ç»“æŸæ ‡ç­¾
+            //½áÊø±êÇ©
             if (sort.equals("END_LABEL"))
             {
 
@@ -61,7 +61,7 @@ public class DocumentParser
                 continue;
             }
 
-            //å†…å®¹
+            //ÄÚÈİ
             int key = treeSize + 1;
             DocumentNode newDocumentNode = new DocumentNode(key, parent.getKey(), parent.getLevel() + 1);
             newDocumentNode.setValue(token);
@@ -84,10 +84,10 @@ public class DocumentParser
     }
 
     /**
-     * åˆ¤æ–­ä¸¤ä¸ªæ ‡ç­¾æ˜¯å¦å¯¹åº”
+     * ÅĞ¶ÏÁ½¸ö±êÇ©ÊÇ·ñ¶ÔÓ¦
      *
-     * @param start å¼€å§‹æ ‡ç­¾
-     * @param end   ç»“æŸæ ‡ç­¾
+     * @param start ¿ªÊ¼±êÇ©
+     * @param end   ½áÊø±êÇ©
      * @return
      */
     Boolean isSameLabel(String start, String end)
@@ -109,7 +109,7 @@ public class DocumentParser
 
 
     /**
-     * åˆ¤æ–­æ ‡ç­¾ç±»å‹
+     * ÅĞ¶Ï±êÇ©ÀàĞÍ
      *
      * @param token
      * @return

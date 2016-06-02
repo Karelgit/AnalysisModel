@@ -16,10 +16,10 @@ public class TokenParser
 {
 
     /**
-     * è·å–æ ‡ç­¾å
+     * »ñÈ¡±êÇ©Ãû
      *
      * @param label
-     * @return å¦‚:<a herf=""/> æ ‡ç­¾å: a
+     * @return Èç:<a herf=""/> ±êÇ©Ãû: a
      */
     private static String getLabelName(String label)
     {
@@ -36,7 +36,7 @@ public class TokenParser
 
 
     /**
-     * æ¸…ç†æ ‡ç­¾ä¸­ä¸éœ€è¦çš„å†…å®¹
+     * ÇåÀí±êÇ©ÖĞ²»ĞèÒªµÄÄÚÈİ
      *
      * @param label
      * @return
@@ -44,12 +44,12 @@ public class TokenParser
     private static String cleanLabel(String label)
     {
         String str;
-        str = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|Â·|\\|", "");
+        str = label.replaceAll("&\\S*;|\\r|\\t|\\n|\\?|¡¤|\\|", "");
         if (!str.startsWith("<"))
-            str = str.replaceAll(" |ã€€| ", "");
+            str = str.replaceAll(" |¡¡| ", "");
         else
         {
-            //å»å¤„ä¸éœ€è¦çš„æ ‡ç­¾
+            //È¥´¦²»ĞèÒªµÄ±êÇ©
             if (str.startsWith("<br")) str = "";
             if (str.startsWith("<hr")) str = "";
             if (str.startsWith("<p")) str = "";
@@ -70,18 +70,18 @@ public class TokenParser
     @Test
     public  void eee()
     {
-        System.out.println(cleanLabel("ã€€&nbsp; æˆ‘å¸‚è‡ª2013å¹´11æœˆè·å¾—ç¬¬äºŒæ‰¹å›½å®¶å…¬å…±æ–‡åŒ–æœåŠ¡ä½“ç³»ç¤ºèŒƒåŒºåˆ›å»ºèµ„æ ¼åï¼Œå¸‚å§”ã€å¸‚æ”¿åºœå¯¹ç¤ºèŒƒåŒºåˆ›å»ºå·¥ä½œé«˜åº¦é‡è§†ã€å…¨é¢éƒ¨ç½²ï¼Œå„çº§å„éƒ¨é—¨æŒ‰ç…§ç¤ºèŒƒåŒºåˆ›å»ºè¦æ±‚å¼€å±•äº†æ‰å®æœ‰æ•ˆçš„æ”»åšå·¥ä½œï¼Œé€šè¿‡ä¸¤å¹´çš„åŠªåŠ›ï¼Œå–å¾—äº†è‰¯å¥½çš„åˆ›å»ºæ•ˆæœ&nbsp;"));
+        System.out.println(cleanLabel("¡¡&nbsp; ÎÒÊĞ×Ô2013Äê11ÔÂ»ñµÃµÚ¶şÅú¹ú¼Ò¹«¹²ÎÄ»¯·şÎñÌåÏµÊ¾·¶Çø´´½¨×Ê¸ñºó£¬ÊĞÎ¯¡¢ÊĞÕş¸®¶ÔÊ¾·¶Çø´´½¨¹¤×÷¸ß¶ÈÖØÊÓ¡¢È«Ãæ²¿Êğ£¬¸÷¼¶¸÷²¿ÃÅ°´ÕÕÊ¾·¶Çø´´½¨ÒªÇó¿ªÕ¹ÁËÔúÊµÓĞĞ§µÄ¹¥¼á¹¤×÷£¬Í¨¹ıÁ½ÄêµÄÅ¬Á¦£¬È¡µÃÁËÁ¼ºÃµÄ´´½¨Ğ§¹û&nbsp;"));
     }
 
 
 
 
     /**
-     * tokenæå–
-     * ä½¿ç”¨è‡ªåŠ¨è½¬æ¢æœºåŸç†
+     * tokenÌáÈ¡
+     * Ê¹ÓÃ×Ô¶¯×ª»»»úÔ­Àí
      *
      * @param html
-     * @return tokenåˆ—è¡¨
+     * @return tokenÁĞ±í
      * @throws IOException
      */
     private static List<String> parserHtml(String html) throws IOException
@@ -92,10 +92,10 @@ public class TokenParser
 
         for (int i = 0; i < html.length(); i++)
         {
-            //è·å–å­—ç¬¦
+            //»ñÈ¡×Ö·û
             word = html.charAt(i);
 
-            //é‡è§ç»“æŸå­—ç¬¦ '<'
+            //Óö¼û½áÊø×Ö·û '<'
             if (word == '<')
             {
                 data = cleanLabel(data);
@@ -104,13 +104,13 @@ public class TokenParser
                 continue;
             }
 
-            //é‡è§ç»“æŸå­—ç¬¦ '>'
+            //Óö¼û½áÊø×Ö·û '>'
             if (word == '>')
             {
                 data = cleanLabel(data + word);
                 if (data.length() > 0)
                 {
-                    //å½“å‰dataä¸ºç‹¬ç«‹æ ‡ç­¾ï¼Œå¦‚<img/>ï¼Œåˆ™å°†å…¶è½¬æ¢ä¸º<img></img>
+                    //µ±Ç°dataÎª¶ÀÁ¢±êÇ©£¬Èç<img/>£¬Ôò½«Æä×ª»»Îª<img></img>
                     if (data.endsWith("/>"))
                     {
                         tokens.add(data.replaceAll("/>", ">"));
@@ -121,7 +121,7 @@ public class TokenParser
                 continue;
             }
 
-            //ä¸ä¸ºç»“æŸç¬¦ï¼Œåˆ™æ›´æ–°è¯¥å­—ç¬¦åˆ°data
+            //²»Îª½áÊø·û£¬Ôò¸üĞÂ¸Ã×Ö·ûµ½data
             data += word;
         }
 
@@ -140,7 +140,7 @@ public class TokenParser
 
 
     /**
-     * å°†Stringè½¬æ¢æˆInputStream
+     * ½«String×ª»»³ÉInputStream
      * @param in
      * @return
      * @throws Exception
@@ -156,90 +156,90 @@ public class TokenParser
     {
         Tidy tidy = new Tidy();
 
-        //æµ‹è¯•èµ„æº,ä¸å½“å‰ç±»åŒåŒ…
+        //²âÊÔ×ÊÔ´,Óëµ±Ç°ÀàÍ¬°ü
         InputStream is = StringTOInputStream(html);
 
         /*
-         * é…ç½®
+         * ÅäÖÃ
          */
 
-        //æ‰“å°é…ç½®
+        //´òÓ¡ÅäÖÃ
         //tidy.getConfiguration().printConfigOptions(new PrintWriter(System.out), true);
 
-        //è¯»å–é…ç½®æ–‡ä»¶
+        //¶ÁÈ¡ÅäÖÃÎÄ¼ş
         //tidy.setConfigurationFromFile("config.txt");
         //tidy.setConfigurationFromProps(null);
 
 
-        //æ˜¯å¦ç¼©è¿›
+        //ÊÇ·ñËõ½ø
         tidy.setIndentContent(true);
 
-        //è®¾ç½®è¾“å‡ºé”™è¯¯ä¸è­¦å‘Šä¿¡æ¯
+        //ÉèÖÃÊä³ö´íÎóÓë¾¯¸æĞÅÏ¢
         StringWriter stringWriter = new StringWriter();
         PrintWriter errorWriter = new PrintWriter(stringWriter);
         tidy.setErrout(errorWriter);
 
-        //æ˜¯å¦XHTML,è‹¥æ˜¯: <br> -> <br/> ; <img src=""> -> <img src=""> ....
+        //ÊÇ·ñXHTML,ÈôÊÇ: <br> -> <br/> ; <img src=""> -> <img src=""> ....
         tidy.setXHTML(true);
 
-        //æ˜¯å¦éšè—æ³¨é‡Š
+        //ÊÇ·ñÒş²Ø×¢ÊÍ
         tidy.setHideComments(true);
 
-        //æ˜¯å¦bråœ¨ä¸€è¡Œä¸­æ˜¾ç¤º
+        //ÊÇ·ñbrÔÚÒ»ĞĞÖĞÏÔÊ¾
         tidy.setBreakBeforeBR(true);
 
-        //ä¸çŸ¥é“æ˜¯å•¥
+        //²»ÖªµÀÊÇÉ¶
         //tidy.setBurstSlides(false);
 
-        //æ˜¯å¦åˆ é™¤ç©ºçš„<p></p>
+        //ÊÇ·ñÉ¾³ı¿ÕµÄ<p></p>
         tidy.setDropEmptyParas(false);
 
-        //æ˜¯å¦ç”¨pæ ‡ç­¾åŒ…æ‹¬æ–‡å­—,å¦‚æµ‹è¯•htmlçš„: plz save me
+        //ÊÇ·ñÓÃp±êÇ©°üÀ¨ÎÄ×Ö,Èç²âÊÔhtmlµÄ: plz save me
         tidy.setEncloseBlockText(false);
 
-        //urlä¸­çš„ \ -> /
+        //urlÖĞµÄ \ -> /
         tidy.setFixBackslash(true);
 
-        //å±æ€§ä¹Ÿæ¢è¡Œ,çœŸç–¯ç‹‚
+        //ÊôĞÔÒ²»»ĞĞ,Õæ·è¿ñ
         tidy.setIndentAttributes(false);
 
-        //ä¸çŸ¥é“æ˜¯å•¥
+        //²»ÖªµÀÊÇÉ¶
         //tidy.setJoinStyles(false);
 
 
-        //æ˜¯å¦åªæœ‰bodyå†…å®¹
+        //ÊÇ·ñÖ»ÓĞbodyÄÚÈİ
         tidy.setPrintBodyOnly(false);
 
-        //ç§»é™¤ç©ºå…ƒç´ å¦‚:<div></div>
+        //ÒÆ³ı¿ÕÔªËØÈç:<div></div>
         tidy.setTrimEmptyElements(false);
 
-        //æ˜¯å¦èŠ‚ç‚¹ç»“æŸåå¦èµ·ä¸€è¡Œ
+        //ÊÇ·ñ½Úµã½áÊøºóÁíÆğÒ»ĞĞ
         tidy.setSmartIndent(true);
 
-        //æ˜¯å¦ç”¨emæ›¿ä»£iï¼Œstrongæ›¿ä»£b
+        //ÊÇ·ñÓÃemÌæ´úi£¬strongÌæ´úb
         tidy.setLogicalEmphasis(true);
 
-        //æ˜¯å¦æŠŠå¤§å°çš„æ ‡è®°è½¬æ¢æˆå°å†™
+        //ÊÇ·ñ°Ñ´óĞ¡µÄ±ê¼Ç×ª»»³ÉĞ¡Ğ´
         tidy.setUpperCaseTags(true);
 
-        //ä¸€è¡Œæœ‰å¤šé•¿
+        //Ò»ĞĞÓĞ¶à³¤
         tidy.setWraplen(1000);
 
-        //æ­£ç¡®æ˜¾ç¤ºä¸­æ–‡
+        //ÕıÈ·ÏÔÊ¾ÖĞÎÄ
         tidy.setInputEncoding("gbk");
 
         /*
-         * æ‰§è¡Œå¤„ç†
+         * Ö´ĞĞ´¦Àí
          */
 
 
 
-        //æ ¼å¼åŒ–æ‰“å°
+        //¸ñÊ½»¯´òÓ¡
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         org.w3c.dom.Document doc = tidy.parseDOM(is, null);
         tidy.pprint(doc, out);
         String tidied = new String(out.toByteArray());
-        //TODO ä¸è¦å¿˜è®°å…³é—­æµ
+        //TODO ²»ÒªÍü¼Ç¹Ø±ÕÁ÷
         return tidied;
     }
 
