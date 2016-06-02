@@ -12,5 +12,8 @@
     <file url="file://$PROJECT_DIR$/src/main/java/empty/EmptyCheck.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/entry/SparkWorkFlow.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/util/HbasePoolUtils.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/core-site.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/hbase-site.xml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/hdfs-site.xml" charset="UTF-8" />
   </component>
 </project>
