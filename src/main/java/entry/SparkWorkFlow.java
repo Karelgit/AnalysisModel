@@ -19,6 +19,8 @@ public class SparkWorkFlow {
 
     public static void check() {
         Scan scan = new Scan();
+        scan.addFamily(Bytes.toBytes("crawlerData"));
+        scan.addColumn(Bytes.toBytes("crawlerData"),Bytes.toBytes("url"));
         ResultScanner rs = null;
         try {
             HTableInterface table = HbasePoolUtils.getHTable("gycrawler");
@@ -41,33 +43,12 @@ public class SparkWorkFlow {
                             Bytes.toString(kv.getValue()));
                 }
                 System.out.println("-------------------------------------------");
-                System.out.println(i);
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             rs.close();
         }
-
-        /*JavaSparkContext sc = new JavaSparkContext("127.0.0.1", "hbaseTest",
-                System.getenv("SPARK_HOME"), System.getenv("JARS"));
-
-        Configuration conf = HbasePoolUtils.getConfiguration();
-        Scan scan = new Scan();
-        scan.addFamily(Bytes.toBytes("crawlerData"));
-        scan.addColumn(Bytes.toBytes("crawlerData"), Bytes.toBytes("text"));
-        try {
-            String tableName = "gycrawler";
-            conf.set(TableInputFormat.INPUT_TABLE, tableName);
-            ClientProtos.Scan proto = ProtobufUtil.toScan(scan);
-            String ScanToString = Base64.encodeBytes(proto.toByteArray());
-            conf.set(TableInputFormat.SCAN, ScanToString);
-
-            JavaPairRDD<ImmutableBytesWritable, Result> myRDD =  sc.newAPIHadoopRDD(conf,TableInputFormat.class,ImmutableBytesWritable.class,Result.class);
-            System.out.println(myRDD.count());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
     public static void main(String[] args) {
