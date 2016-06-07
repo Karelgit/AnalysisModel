@@ -119,6 +119,17 @@
             <version>1.8</version>
         </dependency>
 
+        <!--错别字rpc依赖包-->
+        <dependency>
+            <groupId>com.yeezhao.guizhou</groupId>
+            <artifactId>yz-guizhou-spellcheck</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yeezhao.guizhou</groupId>
+            <artifactId>yz-guizhou-commons</artifactId>
+            <version>0.2.0</version>
+        </dependency>
     </dependencies>
 
     <build>
