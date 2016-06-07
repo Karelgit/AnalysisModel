@@ -11,6 +11,67 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/jarCollections/yz-guizhou-commons-0.2.0-SNAPSHOT.jar!/" />
+          <root url="jar://D:/jarCollections/yz-guizhou-spellcheck-0.2.0-SNAPSHOT.jar!/" />
+          <root url="file://$MODULE_DIR$/.." />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/test/java" />
+          <root url="file://$MODULE_DIR$/../DomState/src/main/java" />
+          <root url="file://$MODULE_DIR$/../DomState/src/test/java" />
+          <root url="file://$MODULE_DIR$/../HtmlUnit/src/main/java" />
+          <root url="file://$MODULE_DIR$/../JsonConvert/src" />
+          <root url="file://$MODULE_DIR$/../SparkWebCrawler/src/main/java" />
+          <root url="file://$MODULE_DIR$/../SparkWebCrawler/src/test/java" />
+          <root url="file://$MODULE_DIR$/../Test1/src/main/java" />
+          <root url="file://$MODULE_DIR$/../Time_test/src" />
+          <root url="file://$MODULE_DIR$/../cmsToH5/src/main/java" />
+          <root url="file://$MODULE_DIR$/../cms_service_4j_v1.0/src/main/java" />
+          <root url="file://$MODULE_DIR$/../errorStatusAcheive/src/main/java" />
+          <root url="file://$MODULE_DIR$/../sparkcrawl.monitor.ui/src/main/java" />
+          <root url="file://$MODULE_DIR$/../sparkcrawl.monitor.ui/src/test/java" />
+          <root url="file://$MODULE_DIR$/../sparkcrawl.topic/src/main/java" />
+          <root url="file://$MODULE_DIR$/../untitled1/src/main/java" />
+          <root url="file://$MODULE_DIR$/../untitled2/src" />
+          <root url="file://$MODULE_DIR$/../untitled/src" />
+          <root url="file://$MODULE_DIR$/../webmagicDemo/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/forger/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/forger/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/webmagic-admin/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/webmagic-avalon-common/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/webmagic-avalon-common/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/webmagic-worker/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-avalon/webmagic-worker/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-core/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-core/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-extension/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-extension/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-samples/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-samples/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-saxon/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-saxon/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-scripts/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-scripts/src/test/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-selenium/src/main/java" />
+          <root url="file://$MODULE_DIR$/../webmagic/webmagic-selenium/src/test/java" />
+          <root url="file://$MODULE_DIR$/../zombiegroup/src/main/java" />
+          <root url="file://$MODULE_DIR$/../zombiegroup/src/test/java" />
+          <root url="file://$MODULE_DIR$/../zombiemonitor123/ZombieMonitor/src/main/java" />
+          <root url="file://$MODULE_DIR$/../zombiemonitor123/ZombieMonitor/src/test/java" />
+          <root url="file://$MODULE_DIR$/../zombiemonitor/ZombieMonitor/src/main/java" />
+          <root url="file://$MODULE_DIR$/../zombiemonitor/ZombieMonitor/src/test/java" />
+          <root url="file://$MODULE_DIR$/../zombiesitecheck/src/main/java" />
+          <root url="file://$MODULE_DIR$/../zombiesitecheck/src/test/java" />
+          <root url="file://$MODULE_DIR$/../zombiesysm/src/main/java" />
+          <root url="file://$MODULE_DIR$/../zombiesysm/src/test/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.8.3" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.8.2" level="project" />
     <orderEntry type="library" name="Maven: net.sourceforge.htmlunit:htmlunit:2.15" level="project" />
@@ -103,6 +164,15 @@
     <orderEntry type="library" name="Maven: org.spark-project.spark:unused:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-common:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-annotations:2.6.0" level="project" />
+    <orderEntry type="module-library">
+      <library name="Maven: jdk.tools:jdk.tools:1.6">
+        <CLASSES>
+          <root url="jar://C:/Java/jdk1.7.0_13/lib/tools.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="library" name="Maven: com.google.guava:guava:11.0.2" level="project" />
     <orderEntry type="library" name="Maven: commons-cli:commons-cli:1.2" level="project" />
     <orderEntry type="library" name="Maven: xmlenc:xmlenc:0.52" level="project" />
@@ -207,7 +277,8 @@
     <orderEntry type="library" name="Maven: org.glassfish.grizzly:grizzly-framework:tests:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: com.sun.jersey.contribs:jersey-guice:1.8" level="project" />
     <orderEntry type="library" name="Maven: org.apache.hadoop:hadoop-mapreduce-client-hs:2.0.5-alpha" level="project" />
-    <orderEntry type="library" name="Maven: redis.clients:jedis:2.8.0" level="project" />
+    <orderEntry type="library" name="Maven: redis.clients:jedis:2.6.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-pool2:2.0" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.15" level="project" />
     <orderEntry type="library" name="Maven: javax.mail:mail:1.4" level="project" />
     <orderEntry type="library" name="Maven: javax.jms:jms:1.1" level="project" />
