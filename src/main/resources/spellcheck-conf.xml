@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <!-- Enable misspell check(Query LM and Monitor Word list) -->
+    <entry key="enable.misspell.check">true</entry>
+
+    <!-- Language Model -->
+    <entry key="lang.mdl">lang.mdl</entry>
+
+    <!-- Error Model -->
+    <entry key="err.editdist.mdl">err.editdist.mdl</entry>
+    <entry key="err.pinyin.mdl">err.pinyin.mdl</entry>
+
+    <!-- Error Model Configuration-->
+    <entry key="err.editdist.max.length">20</entry>
+    <entry key="err.editdist.min.length">2</entry>
+
+    <!-- Learning to rank model -->
+    <entry key="l2r.mdl">l2r.mdl</entry>
+
+    <!-- Spell Check RPC Server Port-->
+    <entry key="rpc.port">8020</entry>
+    <!-- Default host is es05 -->
+    <!--<entry key="rpc.host">10.68.234.166</entry>-->
+    <entry key="rpc.host">108.108.108.15</entry><!-- localhost -->
+    <entry key="rpc.protocol.version">1</entry>
+
+    <!-- Spell Check Suggestion Num-->
+    <!-- suggest.num <= 0 means to suggest all candidates -->
+    <entry key="suggest.num">3</entry>
+
+    <!-- htable for corpus geneartation -->
+    <entry key="field.json.corpus">DRECONTENT</entry>
+
+    <!-- Language Model Term df threshold -->
+    <entry key="en.threshold.df">1</entry>
+    <!--<entry key="camel.threshold.df">5</entry>-->
+    <entry key="zh.threshold.df">1</entry>
+
+    <!-- Language Model Term length threshold-->
+    <entry key="zh.len.min">2</entry>
+    <entry key="zh.len.max">20</entry>
+    <entry key="en.len.min">2</entry>
+    <entry key="en.len.max">20</entry>
+
+</properties>
