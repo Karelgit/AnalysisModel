@@ -37,7 +37,7 @@ public class SparkWorkFlow {
 
     public static void check() {
         //spark≈‰÷√
-        SparkConf sc = new SparkConf().setAppName("HBaseRead").setMaster("local[2]");
+        SparkConf sc = new SparkConf().setAppName("TopicAnalysisModel").setMaster("local[2]");
         JavaSparkContext jsc = new JavaSparkContext(sc);
 
         Configuration conf = HbasePoolUtils.getConfiguration();
