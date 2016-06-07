@@ -88,7 +88,7 @@ public class EmptyCheck
             ContentValue contentValue =new ContentValue(contentParser.getContentList());
             String content=contentValue.getContent();
             //如果获取的content字数小于以下阀值则表示，该文章页为疑似空白栏目
-            if (content.length()<20) return true;
+            if (content.length()<8) return true;
         }
 
 
