@@ -58,7 +58,6 @@
             <version>1.6.1</version>
         </dependency>
 
-
         <!-- hbase api -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>

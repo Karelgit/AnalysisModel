@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import static net.sourceforge.htmlunit.corejs.javascript.TopLevel.Builtins.Function;
+
 /**
  * Created by Administrator on 2016/5/30.
  */
@@ -37,7 +39,7 @@ public class SparkWorkFlow {
 
     public static void check() {
         //spark≈‰÷√
-        SparkConf sc = new SparkConf().setAppName("TopicAnalysisModel").setMaster("local[2]");
+        SparkConf sc = new SparkConf().setAppName("TopicAnalysisModel")/*.setMaster("local[2]")*/;
         JavaSparkContext jsc = new JavaSparkContext(sc);
 
         Configuration conf = HbasePoolUtils.getConfiguration();
