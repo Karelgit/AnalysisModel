@@ -1,10 +1,9 @@
-<!--Mon Dec 21 10:07:21 2015-->
+<!--Mon Jun 27 18:12:15 2016-->
     <configuration>
     
     <property>
       <name>fs.defaultFS</name>
-      <!--<value>hdfs://hdp-master:8020</value>-->
-        <value>hdfs://108.108.108.15:8020</value>
+      <value>hdfs://crawler-20:8020</value>
       <final>true</final>
     </property>
     
@@ -21,17 +20,6 @@
     <property>
       <name>hadoop.http.authentication.simple.anonymous.allowed</name>
       <value>true</value>
-    </property>
-    
-    <property>
-      <name>hadoop.proxyuser.oozie.groups</name>
-      <value>*</value>
-    </property>
-    
-    <property>
-      <name>hadoop.proxyuser.oozie.hosts</name>
-      <!--<value>hdp-slave1</value>-->
-        <value>108.108.108.16</value>
     </property>
     
     <property>
@@ -93,11 +81,5 @@
       <name>proxyuser_group</name>
       <value>users</value>
     </property>
-
-    <property>
-        <name>fs.hdfs.impl</name>
-        <value>org.apache.hadoop.hdfs.DistributedFileSystem</value>
-        <description>The FileSystem for hdfs: uris.</description>
-    </property>
-
-    </configuration>
+    
+  </configuration>

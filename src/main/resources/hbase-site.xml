@@ -1,4 +1,4 @@
-<!--Wed Dec 23 09:49:12 2015-->
+<!--Mon Jun 27 18:12:15 2016-->
     <configuration>
     
     <property>
@@ -118,8 +118,7 @@
     
     <property>
       <name>hbase.rootdir</name>
-        <!--<value>hdfs://hdp-master:8020/apps/hbase/data</value>-->
-        <value>hdfs://108.108.108.15:8020/apps/hbase/data</value>
+      <value>hdfs://crawler-20:8020/apps/hbase/data</value>
     </property>
     
     <property>
@@ -142,10 +141,10 @@
       <value>hbase</value>
     </property>
     
-    <!--<property>-->
-      <!--<name>hbase.tmp.dir</name>-->
-      <!--<value>/hadoop/hbase</value>-->
-    <!--</property>-->
+    <property>
+      <name>hbase.tmp.dir</name>
+      <value>/crawlerdata/hadoop/hbase</value>
+    </property>
     
     <property>
       <name>hbase.zookeeper.property.clientPort</name>
@@ -154,8 +153,7 @@
     
     <property>
       <name>hbase.zookeeper.quorum</name>
-      <!--<value>hdp-slave2,hdp-master,hdp-slave1</value>-->
-        <value>108.108.108.17,108.108.108.15,108.108.108.16</value>
+      <value>crawler-20,crawler-40,crawler-30</value>
     </property>
     
     <property>

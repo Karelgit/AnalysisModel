@@ -1,0 +1,3 @@
+用途：700家网站的IPC备案扫描
+集群master:crawler-30 /usr/local/SparkApp/
+slave:  crawler-40,crawler-50

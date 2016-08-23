@@ -30,7 +30,9 @@ public class
         conf.set("hbase.zookeeper.property.clientPort", port);
     }
 
-    public static synchronized Configuration getConfiguration() {
+    public static synchronized Configuration
+
+    getConfiguration() {
 
         return conf;
     }
