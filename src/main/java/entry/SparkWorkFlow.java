@@ -35,6 +35,10 @@ public class SparkWorkFlow {
             "]");
     public static JavaSparkContext jsc = new JavaSparkContext(sc);
 
+    private static List<String> titleList = new ArrayList<>();
+    private static List<String> contentList = new ArrayList<>();
+    private static List<String> filteredContentList = new ArrayList<>();
+
     public static void check(String domain) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
 
@@ -106,9 +110,15 @@ public class SparkWorkFlow {
         word_puretext.foreach(new VoidFunction<String>() {
             @Override
             public void call(String s) throws Exception {
-            ParamSplit.splitParamsInMemory(s);
+                titleList.add(ParamSplit.splitParamsContent(s));
+                contentList.add(ParamSplit.splitParamsContent(s));
+                filteredContentList.add(ParamSplit.splitParamsFilterContent(s));
             }
         });
+
+        for(int i=0; i<titleList.size(); i++)   {
+            System.out.println("标题分词结果：" + titleList.get(i));
+        }
 
         //把原始数据分词后下载到本地
         /*word_puretext.foreach(new VoidFunction<String>() {
