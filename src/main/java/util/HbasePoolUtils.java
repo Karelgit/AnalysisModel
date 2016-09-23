@@ -33,7 +33,6 @@ public class
     public static synchronized Configuration
 
     getConfiguration() {
-
         return conf;
     }
 

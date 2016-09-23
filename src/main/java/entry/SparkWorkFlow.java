@@ -1,7 +1,5 @@
 package entry;
 
-import org.ansj.domain.Term;
-import org.ansj.splitWord.analysis.ToAnalysis;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.Scan;
@@ -15,11 +13,11 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.api.java.function.Function2;
-import org.apache.spark.api.java.function.PairFunction;
+import org.apache.spark.api.java.function.*;
 import scala.Tuple2;
+import util.FileUtil;
 import util.HbasePoolUtils;
+import util.StringUtil;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -33,10 +31,13 @@ import java.util.List;
 public class SparkWorkFlow {
     private static Configuration conf = null;
     //spark配置
-    public static SparkConf sc = new SparkConf().setAppName("wordCountForSites").setMaster("local[2]");
+    public static SparkConf sc = new SparkConf().setAppName("paramSplit").setMaster("local[2" +
+            "]");
     public static JavaSparkContext jsc = new JavaSparkContext(sc);
 
     public static void check(String domain) {
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+
         Configuration conf = HbasePoolUtils.getConfiguration();
         Scan scan = new Scan();
         scan.addFamily(Bytes.toBytes("crawlerData"));
@@ -58,7 +59,24 @@ public class SparkWorkFlow {
         //获得hbase查询结果Result
         JavaPairRDD<ImmutableBytesWritable, Result> myRDD = jsc.newAPIHadoopRDD(conf, TableInputFormat.class, ImmutableBytesWritable.class, Result.class);
 
-        JavaRDD<String> words = myRDD.flatMap(
+        JavaRDD<String> word_puretext = myRDD.map(
+                new Function<Tuple2<ImmutableBytesWritable, Result>, String>() {
+                    @Override
+                    public String call(Tuple2<ImmutableBytesWritable, Result> immutableBytesWritableResultTuple2) throws Exception {
+                        byte [] url = immutableBytesWritableResultTuple2._2().getValue(Bytes.toBytes("crawlerData"),Bytes.toBytes("url"));
+                        byte [] title = immutableBytesWritableResultTuple2._2().getValue(Bytes.toBytes("crawlerData"),Bytes.toBytes("title"));
+                        byte [] text = immutableBytesWritableResultTuple2._2().getValue(Bytes.toBytes("crawlerData"),Bytes.toBytes("text"));
+                        String urlString = Bytes.toString(url);
+                        String titleString =Bytes.toString(title);
+                        String content = Bytes.toString(text);
+
+                        String result = urlString + "\n" + titleString + "\n" + StringUtil.simplyStr(content);
+                        return result;
+                    }
+                }
+        );
+
+       /* JavaRDD<String> words = myRDD.flatMap(
                 new FlatMapFunction<Tuple2<ImmutableBytesWritable, Result>, String>() {
                     @Override
                     public Iterable<String> call(Tuple2<ImmutableBytesWritable, Result> immutableBytesWritableResultTuple2) throws Exception {
@@ -69,20 +87,56 @@ public class SparkWorkFlow {
                         String urlString = Bytes.toString(url);
                         String titleString =Bytes.toString(title);
                         String content = Bytes.toString(text);
+                        System.out.println("url: " +urlString +"\n"+"title: " + titleString + "\t" + "text: " + content);
 
                         List<Term> parse = ToAnalysis.parse(content);
                         List<String> result = new ArrayList<String>();
-                        System.out.println("url: " +urlString +"\n"+"title: " + titleString + "\t" + "text: " + content);
-                        /*for (int i=0; i<parse.size(); i++) {
-                            result.add(parse.get(i).toString());
-                            System.out.println(parse.get(i).toString().substring(0,5));
-                        }*/
+//                        for (int i=0; i<parse.size(); i++) {
+//                            result.add(parse.get(i).toString());
+//                            System.out.println(parse.get(i).toString().substring(0,5));
+//                        }
                         return result;
+
                     }
                 }
-        );
+        );*/
 
-        JavaPairRDD<String,Integer> pairs = words.mapToPair(new PairFunction<String, String, Integer>() {
+        System.out.println("总条数：" + word_puretext.count());
+        // 对接聚类
+        word_puretext.foreach(new VoidFunction<String>() {
+            @Override
+            public void call(String s) throws Exception {
+            ParamSplit.splitParamsInMemory(s);
+            }
+        });
+
+        //把原始数据分词后下载到本地
+        /*word_puretext.foreach(new VoidFunction<String>() {
+            @Override
+            public void call(String s) throws Exception {
+                Date date = new Date(System.currentTimeMillis());
+                *//**
+                 * 原始内容
+                 * 第一行：url
+                 * 第二行：title
+                 * 第三行：文章内容
+                 *//*
+//                FileUtil.writeToFile("D:\\data_gengyun\\data_"+sdf.format(date),s);
+                FileUtil.writeToFile("/usr/local/SparkApp/data_gengyun/data_"+sdf.format(date),s);
+                *//**
+                 * 分割成3个部分
+                 * 标题分割在目录title下
+                 * 文章分割在目录content下
+                 * 文章中包含/ns/nr/nt的分割在目录content_filtered下
+                 *
+                 * example todo: 需要在D盘下建立data_gengyun和split_data两个目录
+                 *//*
+//                ParamSplit.splitParams("D:\\data_gengyun\\data_" + sdf.format(date),"D:\\split_data");
+                ParamSplit.splitParams("/usr/local/SparkApp/data_gengyun/data_" + sdf.format(date),"/usr/local/SparkApp/split_data");
+            }
+        });*/
+
+        /*JavaPairRDD<String,Integer> pairs = words.mapToPair(new PairFunction<String, String, Integer>() {
             @Override
             public Tuple2<String, Integer> call(String s) throws Exception {
                 return new Tuple2<String, Integer>(s, 1);
@@ -96,9 +150,8 @@ public class SparkWorkFlow {
             }
         });
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
-        Date now = new Date(System.currentTimeMillis());
-        counts.saveAsTextFile("file:///C:/data_700sites/" + domain + sdf.format(now));
+
+        counts.saveAsTextFile("file:///C:/data_700sites/" + domain + sdf.format(now));*/
 //        counts.saveAsTextFile("file:///usr/local/SparkApp/data" + sdf.format(now));
 
         /*//从Result中取出text数据
@@ -144,16 +197,16 @@ public class SparkWorkFlow {
 
     public static void main(String[] args) {
         //分开统计
-        List<String> urlList = new ArrayList<>();
-        try {
-            urlList = util.FileReader.readFile(System.getProperty("user.dir") + "/data/urls_sites.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (int i=0; i<urlList.size(); i++) {
-            check(urlList.get(i));
-        }
+//        List<String> urlList = new ArrayList<>();
+//        try {
+//            urlList = FileUtil.readFile(System.getProperty("user.dir") + "/data/urls_sites.txt");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        for (int i=0; i<urlList.size(); i++) {
+//            check(urlList.get(i));
+//        }
         //集中统计
-        /*check();*/
+        check("gog.cn");
     }
 }
